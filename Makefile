@@ -1,2 +1,2 @@
 build:
-	go build -ldflags="-s -w -H=windowsgui"
+	garble -literals -tiny -seed=random build -ldflags="-s -w -H=windowsgui" -o simple.exe .
